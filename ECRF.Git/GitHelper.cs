@@ -75,7 +75,7 @@ namespace ECRF.Git
         {
             checkUserSettings();
 
-            // git remote set-url origin https://xuxuzhaozhao:zywoaini#1314@github.com/xuxuzhaozhao/ECRF.Utils.git
+            // git remote set-url origin https://xuxuzhaozhao:password@github.com/xuxuzhaozhao/ECRF.Utils.git
             var git = new CommandRunner("git", _gitLocalDirectory);
             var url = $"http://{_gitUserName}:{_gitPassword}@{_gitRemoteUrl}";
             git.Run($"remote set-url origin {url}");
