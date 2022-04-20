@@ -21,7 +21,7 @@ namespace ECRF.Git
 
             var git = new CommandRunner("git", _gitLocalDirectory);
             var url = $"http://{_gitUserName}:{_gitPassword}@{_gitRemoteUrl}";
-            git.Run($"clone {url} {_gitLocalDirectory}");
+            git._($"clone {url} {_gitLocalDirectory}");
         }
 
         [Description("git pull")]
@@ -30,7 +30,7 @@ namespace ECRF.Git
             checkUserSettings();
 
             var git = new CommandRunner("git", _gitLocalDirectory);
-            git.Run($"pull");
+            git._($"pull");
         }
 
         [Description("git add <filePath>")]
@@ -39,7 +39,7 @@ namespace ECRF.Git
             checkUserSettings();
 
             var git = new CommandRunner("git", _gitLocalDirectory);
-            git.Run($"add {filePath}");
+            git._($"add {filePath}");
         }
 
         [Description("git rm <filePath>")]
@@ -48,7 +48,7 @@ namespace ECRF.Git
             checkUserSettings();
 
             var git = new CommandRunner("git", _gitLocalDirectory);
-            git.Run($"rm {filePath}");
+            git._($"rm {filePath}");
         }
 
         [Description("git checkout -- <filePath>")]
@@ -57,7 +57,7 @@ namespace ECRF.Git
             checkUserSettings();
 
             var git = new CommandRunner("git", _gitLocalDirectory);
-            git.Run($"checkout -- {filePath}");
+            git._($"checkout -- {filePath}");
         }
 
         [Description("git commit -m <commitMsg>")]
@@ -67,7 +67,7 @@ namespace ECRF.Git
             if (string.IsNullOrEmpty(commitMsg)) throw new ArgumentException("提交信息不可为空");
 
             var git = new CommandRunner("git", _gitLocalDirectory);
-            git.Run($"commit -m \"{commitMsg}\"");
+            git._($"commit -m \"{commitMsg}\"");
         }
 
         [Description("git push origin master")]
@@ -78,8 +78,8 @@ namespace ECRF.Git
             // git remote set-url origin https://xuxuzhaozhao:password@github.com/xuxuzhaozhao/ECRF.Utils.git
             var git = new CommandRunner("git", _gitLocalDirectory);
             var url = $"http://{_gitUserName}:{_gitPassword}@{_gitRemoteUrl}";
-            git.Run($"remote set-url origin {url}");
-            git.Run("push origin master");
+            git._($"remote set-url origin {url}");
+            git._("push origin master");
         }
 
         private class CommandRunner
@@ -93,7 +93,7 @@ namespace ECRF.Git
                 WorkingDirectory = workingDirectory ?? Path.GetDirectoryName(executablePath);
             }
 
-            public string Run(string arguments)
+            public string _(string arguments)
             {
                 var info = new ProcessStartInfo(ExecutablePath, arguments)
                 {
