@@ -11,7 +11,7 @@ using System.Xml;
 
 namespace ECRF.FixData.Inspection
 {
-    class index
+    public class Index
     {
         const string connectionStrTest = "server=192.168.200.123;database=GEI;user id=sa;password=1qaz@wsx;";
         public static void Execute()
