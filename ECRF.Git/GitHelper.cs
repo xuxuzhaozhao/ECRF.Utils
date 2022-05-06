@@ -8,76 +8,76 @@ namespace ECRF.Git
 {
     public class GitHelper
     {
-        static string _gitLocalDirectory => ConfigurationManager.AppSettings["GIT_LOCAL_DIRECTORY"];
-        static string _gitRemoteUrl => ConfigurationManager.AppSettings["GIT_REMOTE_URL"];
-        static string _gitUserName => ConfigurationManager.AppSettings["GIT_USERNAME"];
-        static string _gitUserEmail => ConfigurationManager.AppSettings["GIT_USEREMAIL"];
-        static string _gitPassword => ConfigurationManager.AppSettings["GIT_PASSWORD"];
+        public string GitLocalDirectory { get; set; }
+        public string GitRemoteUrl { get; set; }
+        public string GitUserName { get; set; }
+        public string GitUserEmail { get; set; }
+        public string GitPassword { get; set; }
 
         [Description("git clone <GIT_REMOTE_URL> <GIT_LOCAL_DIRECTORY>")]
-        public static void Clone()
+        public void Clone()
         {
             checkUserSettings();
 
-            var git = new CommandRunner("git", _gitLocalDirectory);
-            var url = $"http://{_gitUserName}:{_gitPassword}@{_gitRemoteUrl}";
-            git._($"clone {url} {_gitLocalDirectory}");
+            var git = new CommandRunner("git", GitLocalDirectory);
+            var url = $"http://{GitUserName}:{GitPassword}@{GitRemoteUrl}";
+            git._($"clone {url} {GitLocalDirectory}");
         }
 
         [Description("git pull")]
-        public static void Pull()
+        public void Pull()
         {
             checkUserSettings();
 
-            var git = new CommandRunner("git", _gitLocalDirectory);
+            var git = new CommandRunner("git", GitLocalDirectory);
             git._($"pull");
         }
 
         [Description("git add <filePath>")]
-        public static void Add(string filePath)
+        public void Add(string filePath)
         {
             checkUserSettings();
 
-            var git = new CommandRunner("git", _gitLocalDirectory);
+            var git = new CommandRunner("git", GitLocalDirectory);
             git._($"add {filePath}");
         }
 
         [Description("git rm <filePath>")]
-        public static void Remove(string filePath)
+        public void Remove(string filePath)
         {
             checkUserSettings();
 
-            var git = new CommandRunner("git", _gitLocalDirectory);
+            var git = new CommandRunner("git", GitLocalDirectory);
             git._($"rm {filePath}");
         }
 
         [Description("git checkout -- <filePath>")]
-        public static void CheckoutPath(string filePath)
+        public void CheckoutPath(string filePath)
         {
             checkUserSettings();
 
-            var git = new CommandRunner("git", _gitLocalDirectory);
+            var git = new CommandRunner("git", GitLocalDirectory);
             git._($"checkout -- {filePath}");
         }
 
         [Description("git commit -m <commitMsg>")]
-        public static void Commit(string commitMsg)
+        public void Commit(string commitMsg)
         {
             checkUserSettings();
             if (string.IsNullOrEmpty(commitMsg)) throw new ArgumentException("提交信息不可为空");
 
-            var git = new CommandRunner("git", _gitLocalDirectory);
+            var git = new CommandRunner("git", GitLocalDirectory);
             git._($"commit -m \"{commitMsg}\"");
         }
 
         [Description("git push origin master")]
-        public static void Push()
+        public void Push()
         {
             checkUserSettings();
 
             // git remote set-url origin https://xuxuzhaozhao:password@github.com/xuxuzhaozhao/ECRF.Utils.git
-            var git = new CommandRunner("git", _gitLocalDirectory);
-            var url = $"http://{_gitUserName}:{_gitPassword}@{_gitRemoteUrl}";
+            var git = new CommandRunner("git", GitLocalDirectory);
+            var url = $"http://{GitUserName}:{GitPassword}@{GitRemoteUrl}";
             git._($"remote set-url origin {url}");
             git._("push origin master");
         }
@@ -112,20 +112,20 @@ namespace ECRF.Git
             }
         }
 
-        private static void checkUserSettings()
+        private void checkUserSettings()
         {
-            if (string.IsNullOrEmpty(_gitLocalDirectory))
-                throw new Exception("请设置Git本地目录（GIT_LOCAL_DIRECTORY）");
-            if (!Directory.Exists(_gitLocalDirectory))
-                Directory.CreateDirectory(_gitLocalDirectory);
-            if (string.IsNullOrEmpty(_gitRemoteUrl))
-                throw new Exception("请设置Git远程URL（GIT_REMOTE_URL）");
-            if (string.IsNullOrEmpty(_gitUserName))
-                throw new Exception("请设置用户登录名（GIT_USERNAME）");
-            if (string.IsNullOrEmpty(_gitUserEmail))
-                throw new Exception("请设置用户邮箱（GIT_USEREMAIL）");
-            if (string.IsNullOrEmpty(_gitPassword))
-                throw new Exception("请设置用户密钥（GIT_PASSWORD）");
+            if (string.IsNullOrEmpty(GitLocalDirectory))
+                throw new Exception("请设置Git本地目录（GitLocalDirectory）");
+            if (!Directory.Exists(GitLocalDirectory))
+                Directory.CreateDirectory(GitLocalDirectory);
+            if (string.IsNullOrEmpty(GitRemoteUrl))
+                throw new Exception("请设置Git远程URL（GitRemoteUrl）");
+            if (string.IsNullOrEmpty(GitUserName))
+                throw new Exception("请设置用户登录名（GitUserName）");
+            if (string.IsNullOrEmpty(GitUserEmail))
+                throw new Exception("请设置用户邮箱（GitUserEmail）");
+            if (string.IsNullOrEmpty(GitPassword))
+                throw new Exception("请设置用户密钥（GitPassword）");
         }
     }
 }
