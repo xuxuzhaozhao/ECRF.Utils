@@ -278,7 +278,7 @@ namespace ECRF.Utils.GIT_EXTRACT
                 }
             }
 
-            string aspPath = AppSettings.ASP_PATH.ToUpper();
+            string aspPath = AppSettings.ASP_PATH;
             FolderBrowserDialog dialog = new FolderBrowserDialog();
             dialog.Description = "请选择文件夹";
             dialog.SelectedPath = AppSettings.LAST_SELECTED_PATH;
@@ -314,9 +314,9 @@ namespace ECRF.Utils.GIT_EXTRACT
                 {
                     string comments = dataCommitFiles.Rows[i].Cells[3].Value.ToString();
 
-                    string tmpFilePath = dataCommitFiles.Rows[i].Cells[5].Value.ToString().ToUpper();
+                    string tmpFilePath = dataCommitFiles.Rows[i].Cells[5].Value.ToString();
                     // 如果文件地址不包含 asp 或者 website 直接就跳过
-                    if (!tmpFilePath.Contains(aspPath))
+                    if (!tmpFilePath.ToUpper().Contains(aspPath.ToUpper()))
                     {
                         extramsg = $"(非{aspPath}下的文件不会被复制，请知悉)"; continue;
                     }
@@ -366,7 +366,7 @@ namespace ECRF.Utils.GIT_EXTRACT
                     if (!File.Exists(sourceFullFilePath)) continue;
 
                     //count=4 切除'GEI\'这四个字符
-                    int count = path.IndexOf($@"{aspPath}\");
+                    int count = path.ToUpper().IndexOf($@"{aspPath.ToUpper()}\");
                     //C:\Users\xuxuzhaozhao\Desktop\  Asp\admin\
                     var destFullPath = $"{desktop}\\{ Path.GetDirectoryName(path.Substring(count, path.Length - (count + 1)))}";
 
