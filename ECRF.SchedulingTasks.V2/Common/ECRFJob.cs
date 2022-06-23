@@ -18,6 +18,7 @@ namespace ECRF.SchedulingTasks.V2.Common
                 var result = ECRFCommon.HandleScheduleTask(url, rxtBox);
                 var data = result?.Item1;
                 if (result == null || string.IsNullOrEmpty(data) || data == "no") return;
+                data = data.Replace("\r\n", "").Replace("\n", "");
                 ECRFLog.Info($"{rxtBox.Tag}.log", $"[{data}] 耗时 {result?.Item2}", rxtBox);
             }
             catch (Exception ex)
