@@ -38,6 +38,9 @@ namespace ECRF.Utils.GIT_EXTRACT
             this.rbtnWebSite = new System.Windows.Forms.RadioButton();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.rbtnWEB = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtSelfDefine = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -101,7 +104,7 @@ namespace ECRF.Utils.GIT_EXTRACT
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(21, 78);
+            this.btnSubmit.Location = new System.Drawing.Point(21, 139);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(452, 25);
             this.btnSubmit.TabIndex = 7;
@@ -120,11 +123,40 @@ namespace ECRF.Utils.GIT_EXTRACT
             this.rbtnWEB.Text = "WEB";
             this.rbtnWEB.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(18, 77);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(138, 17);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "自定义Asp文件夹名称：";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // txtSelfDefine
+            // 
+            this.txtSelfDefine.Location = new System.Drawing.Point(154, 75);
+            this.txtSelfDefine.Name = "txtSelfDefine";
+            this.txtSelfDefine.Size = new System.Drawing.Size(319, 23);
+            this.txtSelfDefine.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(276, 110);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(198, 17);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "注意：Asp文件夹名称区分大小写。";
+            // 
             // RepoSettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(485, 113);
+            this.ClientSize = new System.Drawing.Size(485, 176);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtSelfDefine);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.rbtnWEB);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.rbtnWebSite);
@@ -158,5 +190,8 @@ namespace ECRF.Utils.GIT_EXTRACT
         private System.Windows.Forms.RadioButton rbtnWebSite;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.RadioButton rbtnWEB;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtSelfDefine;
+        private System.Windows.Forms.Label label4;
     }
 }

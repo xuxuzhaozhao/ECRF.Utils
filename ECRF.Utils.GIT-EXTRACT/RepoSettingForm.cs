@@ -69,6 +69,10 @@ namespace ECRF.Utils.GIT_EXTRACT
             {
                 aspPath = "WebSite";
             }
+            if (!string.IsNullOrWhiteSpace(txtSelfDefine.Text))
+            {
+                aspPath = txtSelfDefine.Text;
+            }
 
             Tools.SaveAppSetting(nameof(AppSettings.ASP_PATH), aspPath);
 
@@ -79,6 +83,11 @@ namespace ECRF.Utils.GIT_EXTRACT
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
