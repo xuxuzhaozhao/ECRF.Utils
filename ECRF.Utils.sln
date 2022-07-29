@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECRF.Git", "ECRF.Git\ECRF.G
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECRF.FixData", "ECRF.FixData\ECRF.FixData.csproj", "{2D582772-4ED7-4E4D-B30F-E1035934E19D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECRF.WorkLog", "ECRF.WorkLog\ECRF.WorkLog.csproj", "{4A7565A5-7E5B-4AA3-878A-96177B27FD8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{2D582772-4ED7-4E4D-B30F-E1035934E19D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D582772-4ED7-4E4D-B30F-E1035934E19D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D582772-4ED7-4E4D-B30F-E1035934E19D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A7565A5-7E5B-4AA3-878A-96177B27FD8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A7565A5-7E5B-4AA3-878A-96177B27FD8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A7565A5-7E5B-4AA3-878A-96177B27FD8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A7565A5-7E5B-4AA3-878A-96177B27FD8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
