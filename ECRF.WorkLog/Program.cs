@@ -14,6 +14,7 @@ namespace ECRF.WorkLog
     {
         static string startDate = ConfigurationManager.AppSettings["start"];
         static string endDate = ConfigurationManager.AppSettings["end"];
+        const string Day = "日一二三四五六";
         static void Main(string[] args)
         {
             string saveFileName = $@"D:\work\log\{DateTime.Now:yyyy-MM}.js";
@@ -21,33 +22,24 @@ namespace ECRF.WorkLog
             DateTime start = DateTime.Parse(startDate);
             DateTime end = string.IsNullOrEmpty(endDate) ? start.AddMonths(1) : DateTime.Parse(endDate);
             string[] lines = GetCommitData(start);
+            TimeSpan ts = end - start;
 
-            const string Day = "日一二三四五六";
             using (var writer = new StreamWriter(saveFileName))
             {
-                int i = 0;
-                while (start < end)
+                for (int i = 0, j = 0; i < ts.Days && j < lines.Length; i++)
                 {
-                    if (IsHolidayByDate(start).Result)
-                    {
-                        Console.WriteLine($"{start:yyyy年MM月dd日} 星期{Day[Convert.ToInt16(start.DayOfWeek)]} 是休息日");
-                    }
-                    else
-                    {
-                        if (lines.Length > i)
-                        {
-                            writer.WriteLine($@"
-//{start:yyyy年MM月dd日} 星期{Day[Convert.ToInt16(start.DayOfWeek)]}
+                    var curDate = start.AddDays(i);
+                    if (IsHolidayByDate(curDate).Result) continue;
+
+                    writer.WriteLine($@"
+//{start:yyyy年MM月dd日} 星期{Day[Convert.ToInt16(curDate.DayOfWeek)]}
 $(""#time_entry_issue_id"").val('2358');
-$(""#time_entry_spent_on"").val('{start:yyyy-MM-dd}');
+$(""#time_entry_spent_on"").val('{curDate:yyyy-MM-dd}');
 $(""#time_entry_hours"").val('8');
 $(""#time_entry_activity_id"").val('9934');
-$(""#time_entry_comments"").val('{lines[i]}');
+$(""#time_entry_comments"").val('{lines[j]}');
 $(""input[name='continue']"").click();");
-                            i++;
-                        }
-                    }
-                    start = start.AddDays(1);
+                    j++;
                 }
             }
 
