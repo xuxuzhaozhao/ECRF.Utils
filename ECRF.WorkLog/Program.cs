@@ -32,7 +32,7 @@ namespace ECRF.WorkLog
                     if (IsHolidayByDate(curDate).Result) continue;
 
                     writer.WriteLine($@"
-//{start:yyyy年MM月dd日} 星期{Day[Convert.ToInt16(curDate.DayOfWeek)]}
+//{curDate:yyyy年MM月dd日} 星期{Day[Convert.ToInt16(curDate.DayOfWeek)]}
 $(""#time_entry_issue_id"").val('2358');
 $(""#time_entry_spent_on"").val('{curDate:yyyy-MM-dd}');
 $(""#time_entry_hours"").val('8');
