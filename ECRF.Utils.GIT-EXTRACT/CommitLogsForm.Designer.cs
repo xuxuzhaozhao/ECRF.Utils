@@ -40,6 +40,8 @@ namespace ECRF.Utils.GIT_EXTRACT
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCommitRecord = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cboModifier = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -93,20 +95,22 @@ namespace ECRF.Utils.GIT_EXTRACT
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.cboModifier);
+            this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.btnChangeRecordNum);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.txtCommitRecord);
             this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(167, 35);
+            this.panel3.Size = new System.Drawing.Size(423, 35);
             this.panel3.TabIndex = 9;
             // 
             // btnChangeRecordNum
             // 
-            this.btnChangeRecordNum.Location = new System.Drawing.Point(135, 6);
+            this.btnChangeRecordNum.Location = new System.Drawing.Point(360, 5);
             this.btnChangeRecordNum.Name = "btnChangeRecordNum";
-            this.btnChangeRecordNum.Size = new System.Drawing.Size(25, 23);
+            this.btnChangeRecordNum.Size = new System.Drawing.Size(54, 23);
             this.btnChangeRecordNum.TabIndex = 8;
             this.btnChangeRecordNum.Text = "√";
             this.btnChangeRecordNum.UseVisualStyleBackColor = true;
@@ -137,6 +141,24 @@ namespace ECRF.Utils.GIT_EXTRACT
             this.txtCommitRecord.Size = new System.Drawing.Size(33, 23);
             this.txtCommitRecord.TabIndex = 6;
             this.txtCommitRecord.Text = "25";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(159, 8);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 17);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "修改者";
+            // 
+            // cboModifier
+            // 
+            this.cboModifier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboModifier.FormattingEnabled = true;
+            this.cboModifier.Location = new System.Drawing.Point(209, 4);
+            this.cboModifier.Name = "cboModifier";
+            this.cboModifier.Size = new System.Drawing.Size(121, 25);
+            this.cboModifier.TabIndex = 10;
             // 
             // CommitLogsForm
             // 
@@ -176,5 +198,7 @@ namespace ECRF.Utils.GIT_EXTRACT
         private System.Windows.Forms.TextBox txtCommitRecord;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.ComboBox cboModifier;
+        private System.Windows.Forms.Label label3;
     }
 }

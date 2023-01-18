@@ -27,11 +27,13 @@ namespace ECRF.Utils.GIT_EXTRACT
         private void CommitLogsForm_Load(object sender, EventArgs e)
         {
             int count = AppSettings.COMMIT_RECORD_NUM;
+            var modifier = AppSettings.COMMIT_MODIFIER;
             this.txtCommitRecord.Text = count.ToString();
-            LoadData(count);
+            cboModifier.Text = modifier;
+            LoadData(count, modifier);
         }
 
-        private void LoadData(int count)
+        private void LoadData(int count, string modifier)
         {
             var logList = new List<CommitLogModel>();
             //加载数据源
@@ -41,7 +43,22 @@ namespace ECRF.Utils.GIT_EXTRACT
                 {
                     count = repo.Commits.Count() - 1;
                 }
-                foreach (var commit in repo.Commits.Take(count))
+                var allModifers = repo.Commits.Select(t => t.Author.Name).Distinct().ToList();
+                allModifers.Insert(0, "全部");
+                cboModifier.DataSource = allModifers;
+                cboModifier.Text = modifier;
+
+                var commits = repo.Commits.ToList();
+                if (string.IsNullOrWhiteSpace(modifier) || modifier == "全部")
+                {
+                    commits = commits.Take(count).ToList();
+                }
+                else
+                {
+                    commits = commits.Where(t => t.Author.Name.Contains(modifier)).Take(count).ToList();
+                }
+
+                foreach (var commit in commits)
                 {
                     logList.Add(new CommitLogModel()
                     {
@@ -77,15 +94,18 @@ namespace ECRF.Utils.GIT_EXTRACT
         {
             string recordNum = this.txtCommitRecord.Text;
 
+            var modifier = cboModifier.Text;
+
             bool isInt = int.TryParse(recordNum, out int num);
             if (!isInt || num <= 0)
             {
-                MessageBox.Show("哎呀，请输入正确的正整数嘛。");
+                MessageBox.Show("请输入正确的正整数");
                 return;
             }
 
             Tools.SaveAppSetting(nameof(AppSettings.COMMIT_RECORD_NUM), num.ToString());
-            LoadData(num);
+            Tools.SaveAppSetting(nameof(AppSettings.COMMIT_MODIFIER), modifier);
+            LoadData(num, modifier);
         }
 
         //右键复制
