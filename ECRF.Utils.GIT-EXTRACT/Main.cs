@@ -185,14 +185,14 @@ namespace ECRF.Utils.GIT_EXTRACT
                 ((CheckBox)dataCommitFiles.Controls.Find("checkboxHeader", true)[0]).Checked = true;
                 foreach (DataGridViewRow dr in dataCommitFiles.Rows)
                 {
-                    if (!dr.Cells[5].Value.ToString().Contains(AppSettings.ASP_PATH))
-                    {
-                        ((CheckBox)dataCommitFiles.Controls.Find("checkboxHeader", true)[0]).Checked = false;
-                        DataGridViewCellStyle style = new DataGridViewCellStyle();
-                        style.ForeColor = Color.Gray;
-                        dr.DefaultCellStyle = style;
-                        continue;
-                    }
+                    //if (!dr.Cells[5].Value.ToString().Contains(AppSettings.ASP_PATH))
+                    //{
+                    //    ((CheckBox)dataCommitFiles.Controls.Find("checkboxHeader", true)[0]).Checked = false;
+                    //    DataGridViewCellStyle style = new DataGridViewCellStyle();
+                    //    style.ForeColor = Color.Gray;
+                    //    dr.DefaultCellStyle = style;
+                    //    continue;
+                    //}
                     dr.Cells[0].Value = true;
                 }
                 return;
@@ -316,10 +316,10 @@ namespace ECRF.Utils.GIT_EXTRACT
 
                     string tmpFilePath = dataCommitFiles.Rows[i].Cells[5].Value.ToString();
                     // 如果文件地址不包含 asp 或者 website 直接就跳过
-                    if (!tmpFilePath.ToUpper().Contains(aspPath.ToUpper()))
-                    {
-                        extramsg = $"(非{aspPath}下的文件不会被复制，请知悉)"; continue;
-                    }
+                    //if (!tmpFilePath.ToUpper().Contains(aspPath.ToUpper()))
+                    //{
+                    //    extramsg = $"(非{aspPath}下的文件不会被复制，请知悉)"; continue;
+                    //}
 
                     if (dataCommitFiles.Rows[i].Cells[0].Value != null &&
                         dataCommitFiles.Rows[i].Cells[0].Value.ToString() == "True")
@@ -345,11 +345,11 @@ namespace ECRF.Utils.GIT_EXTRACT
                 string desktop = this.label1.Text;
 
                 //C:\Users\xuxuzhaozhao\Desktop\Asp
-                string destPath = $"{desktop}\\{aspPath}";
+                string destPath = $"{desktop}\\ExtracFiles";
 
                 if (Directory.Exists(destPath))
                 {
-                    DialogResult result = MessageBox.Show($"已存在{aspPath}文件夹,是否直接覆盖.", "保存提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    DialogResult result = MessageBox.Show($"已存在[ExtracFiles]文件夹,是否直接覆盖.", "保存提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                     if (result != DialogResult.OK) return;
                 }
                 else
@@ -366,9 +366,9 @@ namespace ECRF.Utils.GIT_EXTRACT
                     if (!File.Exists(sourceFullFilePath)) continue;
 
                     //count=4 切除'GEI\'这四个字符
-                    int count = path.ToUpper().IndexOf($@"{aspPath.ToUpper()}\");
+                    int count = 0; path.ToUpper().IndexOf($@"{aspPath.ToUpper()}\");
                     //C:\Users\xuxuzhaozhao\Desktop\  Asp\admin\
-                    var destFullPath = $"{desktop}\\{ Path.GetDirectoryName(path.Substring(count, path.Length - (count + 1)))}";
+                    var destFullPath = $"{desktop}\\ExtracFiles\\{ Path.GetDirectoryName(path.Substring(count, path.Length - (count + 1)))}";
 
                     if (!Directory.Exists(destFullPath))
                     {

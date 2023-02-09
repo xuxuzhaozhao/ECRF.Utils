@@ -43,15 +43,15 @@ namespace ECRF.Utils.GIT_EXTRACT.Common
                 ((CheckBox)dataGridView.Controls.Find("checkboxHeader", true)[0]).Checked = true;
                 foreach (DataGridViewRow dr in dataGridView.Rows)
                 {
-                    if (needStyle && !dr.Cells[5].Value.ToString().Contains(AppSettings.ASP_PATH))
-                    {
-                        ((CheckBox)dataGridView.Controls.Find("checkboxHeader", true)[0]).Checked = false;
-                        DataGridViewCellStyle style = new DataGridViewCellStyle();
-                        //style.BackColor = Color.Red;
-                        style.ForeColor = Color.Gray;
-                        dr.DefaultCellStyle = style;
-                        continue;
-                    }
+                    //if (needStyle && !dr.Cells[5].Value.ToString().Contains(AppSettings.ASP_PATH))
+                    //{
+                    //    ((CheckBox)dataGridView.Controls.Find("checkboxHeader", true)[0]).Checked = false;
+                    //    DataGridViewCellStyle style = new DataGridViewCellStyle();
+                    //    //style.BackColor = Color.Red;
+                    //    style.ForeColor = Color.Gray;
+                    //    dr.DefaultCellStyle = style;
+                    //    continue;
+                    //}
                     dr.Cells[0].Value = true;
                 }
                 return;
@@ -78,15 +78,15 @@ namespace ECRF.Utils.GIT_EXTRACT.Common
             {
                 foreach (DataGridViewRow dr in dataGridView.Rows)
                 {
-                    if (needStyle && !dr.Cells[5].Value.ToString().Contains(AppSettings.ASP_PATH))
-                    {
-                        DataGridViewCellStyle style = new DataGridViewCellStyle();
-                        //style.BackColor = Color.Red;
-                        style.ForeColor = Color.Gray;
-                        dr.DefaultCellStyle = style;
-                        dr.Cells[0].Value = false;
-                        continue;
-                    }
+                    //if (needStyle && !dr.Cells[5].Value.ToString().Contains(AppSettings.ASP_PATH))
+                    //{
+                    //    DataGridViewCellStyle style = new DataGridViewCellStyle();
+                    //    //style.BackColor = Color.Red;
+                    //    style.ForeColor = Color.Gray;
+                    //    dr.DefaultCellStyle = style;
+                    //    dr.Cells[0].Value = false;
+                    //    continue;
+                    //}
                     dr.Cells[0].Value = ((CheckBox)dataGridView.Controls.Find("checkboxHeader", true)[0]).Checked;
                 };
             };
