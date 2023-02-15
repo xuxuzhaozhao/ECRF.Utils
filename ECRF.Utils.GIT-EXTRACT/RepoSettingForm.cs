@@ -25,6 +25,8 @@ namespace ECRF.Utils.GIT_EXTRACT
             rbtnAsp.Checked = AppSettings.ASP_PATH == "Asp";
             rbtnWEB.Checked = AppSettings.ASP_PATH == "WEB";
             rbtnWebSite.Checked = AppSettings.ASP_PATH == "WebSite";
+            cbxNeedBin.Checked = AppSettings.NEED_EXPORT_BIN;
+            cbxNeedLib.Checked = AppSettings.NEED_EXPORT_LIB;
         }
 
         private void btnSetRepoPosition_Click(object sender, EventArgs e)
@@ -72,9 +74,16 @@ namespace ECRF.Utils.GIT_EXTRACT
             if (!string.IsNullOrWhiteSpace(txtSelfDefine.Text))
             {
                 aspPath = txtSelfDefine.Text;
+                rbtnAsp.Checked = false;
+                rbtnWEB.Checked = false;
+                rbtnWebSite.Checked = false;
             }
-
             Tools.SaveAppSetting(nameof(AppSettings.ASP_PATH), aspPath);
+
+            string needBin = cbxNeedBin.Checked ? "true" : "false";
+            string needLib = cbxNeedLib.Checked ? "true" : "false";
+            Tools.SaveAppSetting(nameof(AppSettings.NEED_EXPORT_BIN), needBin);
+            Tools.SaveAppSetting(nameof(AppSettings.NEED_EXPORT_LIB), needLib);
 
             MessageBox.Show(this, "保存成功", "提示");
             Application.Restart();
@@ -83,11 +92,6 @@ namespace ECRF.Utils.GIT_EXTRACT
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Hide();
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

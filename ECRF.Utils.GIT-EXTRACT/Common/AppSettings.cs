@@ -16,5 +16,7 @@ namespace ECRF.Utils.GIT_EXTRACT.Common
         public static bool SHOW_ONCE_AGAIN => bool.Parse(ConfigurationManager.AppSettings[nameof(SHOW_ONCE_AGAIN)]);
         public static string ASP_PATH => ConfigurationManager.AppSettings[nameof(ASP_PATH)];
         public static string LAST_SELECTED_PATH => ConfigurationManager.AppSettings[nameof(LAST_SELECTED_PATH)];
+        public static bool NEED_EXPORT_BIN => bool.Parse(ConfigurationManager.AppSettings[nameof(NEED_EXPORT_BIN)]);
+        public static bool NEED_EXPORT_LIB => bool.Parse(ConfigurationManager.AppSettings[nameof(NEED_EXPORT_LIB)]);
     }
 }

@@ -84,14 +84,14 @@ namespace ECRF.Utils.GIT_EXTRACT
             // 自定义CToolStripMenuItem
             // 
             this.自定义CToolStripMenuItem.Name = "自定义CToolStripMenuItem";
-            this.自定义CToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.自定义CToolStripMenuItem.Text = "仓库位置(&C)";
+            this.自定义CToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.自定义CToolStripMenuItem.Text = "仓库及导出设置(&C)";
             this.自定义CToolStripMenuItem.Click += new System.EventHandler(this.自定义CToolStripMenuItem_Click);
             // 
             // 我习惯自己输入CommitIDToolStripMenuItem
             // 
             this.我习惯自己输入CommitIDToolStripMenuItem.Name = "我习惯自己输入CommitIDToolStripMenuItem";
-            this.我习惯自己输入CommitIDToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.我习惯自己输入CommitIDToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.我习惯自己输入CommitIDToolStripMenuItem.Text = "切换输入模式(&W)";
             this.我习惯自己输入CommitIDToolStripMenuItem.Click += new System.EventHandler(this.我习惯自己输入CommitIDToolStripMenuItem_Click);
             // 
@@ -108,21 +108,21 @@ namespace ECRF.Utils.GIT_EXTRACT
             // 大小写转换ToolStripMenuItem
             // 
             this.大小写转换ToolStripMenuItem.Name = "大小写转换ToolStripMenuItem";
-            this.大小写转换ToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.大小写转换ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.大小写转换ToolStripMenuItem.Text = "大小写转换(&L)";
             this.大小写转换ToolStripMenuItem.Click += new System.EventHandler(this.大小写转换ToolStripMenuItem_Click);
             // 
             // 文件处理FToolStripMenuItem
             // 
             this.文件处理FToolStripMenuItem.Name = "文件处理FToolStripMenuItem";
-            this.文件处理FToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.文件处理FToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.文件处理FToolStripMenuItem.Text = "文件处理(&F)";
             this.文件处理FToolStripMenuItem.Click += new System.EventHandler(this.文件处理FToolStripMenuItem_Click);
             // 
             // 拾色器SToolStripMenuItem
             // 
             this.拾色器SToolStripMenuItem.Name = "拾色器SToolStripMenuItem";
-            this.拾色器SToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.拾色器SToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.拾色器SToolStripMenuItem.Text = "拾色器(&S)";
             this.拾色器SToolStripMenuItem.Click += new System.EventHandler(this.拾色器SToolStripMenuItem_Click);
             // 
@@ -137,7 +137,7 @@ namespace ECRF.Utils.GIT_EXTRACT
             // 关于AToolStripMenuItem
             // 
             this.关于AToolStripMenuItem.Name = "关于AToolStripMenuItem";
-            this.关于AToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.关于AToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.关于AToolStripMenuItem.Text = "关于(&A)...";
             this.关于AToolStripMenuItem.Click += new System.EventHandler(this.关于AToolStripMenuItem_Click);
             // 

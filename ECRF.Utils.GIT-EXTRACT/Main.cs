@@ -152,16 +152,14 @@ namespace ECRF.Utils.GIT_EXTRACT
 
         private void Main_Load(object sender, EventArgs e)
         {
-            List<CommitFile> fileList = new List<CommitFile>();
+             List<CommitFile> fileList = new List<CommitFile>();
             using (var repo = new Repository(AppSettings.REPO_PATH))
             {
                 var commit = repo.Head.Tip;
                 Tree currentTree = repo.Lookup<Commit>(commit.Sha).Tree;
                 Tree currentParentTree = repo.Lookup<Commit>(commit.Parents.FirstOrDefault()?.Sha)?.Tree;
-                if (currentParentTree == null)
-                {
-                    return;
-                }
+                if (currentParentTree == null) return;
+
                 var patch = repo.Diff.Compare<Patch>(currentParentTree, currentTree);
 
                 foreach (var ptc in patch)
@@ -173,7 +171,7 @@ namespace ECRF.Utils.GIT_EXTRACT
                         Message = commit.Message,
                         //Status = ptc.Status.ToString(),
                         CommitDate = commit.Committer.When.ToString("yyyy-MM-dd HH:mm:ss"),
-                        FilePath = ptc.Path
+                        FilePath = ptc.Path 
                     });
                 }
             }

@@ -41,6 +41,10 @@ namespace ECRF.Utils.GIT_EXTRACT
             this.label3 = new System.Windows.Forms.Label();
             this.txtSelfDefine = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.cbxNeedBin = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbxNeedLib = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -74,7 +78,7 @@ namespace ECRF.Utils.GIT_EXTRACT
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 48);
+            this.label2.Location = new System.Drawing.Point(17, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(102, 17);
             this.label2.TabIndex = 3;
@@ -104,7 +108,7 @@ namespace ECRF.Utils.GIT_EXTRACT
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(21, 139);
+            this.btnSubmit.Location = new System.Drawing.Point(21, 162);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(452, 25);
             this.btnSubmit.TabIndex = 7;
@@ -126,12 +130,11 @@ namespace ECRF.Utils.GIT_EXTRACT
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 77);
+            this.label3.Location = new System.Drawing.Point(16, 77);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(138, 17);
             this.label3.TabIndex = 9;
             this.label3.Text = "自定义Asp文件夹名称：";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // txtSelfDefine
             // 
@@ -143,17 +146,57 @@ namespace ECRF.Utils.GIT_EXTRACT
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(276, 110);
+            this.label4.Location = new System.Drawing.Point(275, 109);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(198, 17);
             this.label4.TabIndex = 11;
             this.label4.Text = "注意：Asp文件夹名称区分大小写。";
             // 
+            // cbxNeedBin
+            // 
+            this.cbxNeedBin.AutoSize = true;
+            this.cbxNeedBin.Location = new System.Drawing.Point(155, 109);
+            this.cbxNeedBin.Name = "cbxNeedBin";
+            this.cbxNeedBin.Size = new System.Drawing.Size(15, 14);
+            this.cbxNeedBin.TabIndex = 12;
+            this.cbxNeedBin.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(18, 107);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(110, 17);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "是否导出Bin文件：";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(18, 133);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(128, 17);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "是否导出其他库文件：";
+            // 
+            // cbxNeedLib
+            // 
+            this.cbxNeedLib.AutoSize = true;
+            this.cbxNeedLib.Location = new System.Drawing.Point(155, 135);
+            this.cbxNeedLib.Name = "cbxNeedLib";
+            this.cbxNeedLib.Size = new System.Drawing.Size(15, 14);
+            this.cbxNeedLib.TabIndex = 14;
+            this.cbxNeedLib.UseVisualStyleBackColor = true;
+            // 
             // RepoSettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(485, 176);
+            this.ClientSize = new System.Drawing.Size(485, 202);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.cbxNeedLib);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.cbxNeedBin);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtSelfDefine);
             this.Controls.Add(this.label3);
@@ -173,7 +216,7 @@ namespace ECRF.Utils.GIT_EXTRACT
             this.MinimizeBox = false;
             this.Name = "RepoSettingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "仓库设置";
+            this.Text = "仓库及导出设置";
             this.Load += new System.EventHandler(this.RepoSettingForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -193,5 +236,9 @@ namespace ECRF.Utils.GIT_EXTRACT
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtSelfDefine;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox cbxNeedBin;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox cbxNeedLib;
     }
 }
