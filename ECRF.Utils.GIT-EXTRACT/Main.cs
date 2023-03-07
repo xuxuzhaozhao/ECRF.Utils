@@ -135,7 +135,7 @@ namespace ECRF.Utils.GIT_EXTRACT
                 //count=4 切除'GEI\'这四个字符
                 int count = path.IndexOf(@"Asp\");
                 //C:\Users\xuxuzhaozhao\Desktop\  Asp\admin\
-                var destFullPath = $"{desktop}\\{ Path.GetDirectoryName(path.Substring(count, path.Length - (count + 1)))}";
+                var destFullPath = $"{desktop}\\{Path.GetDirectoryName(path.Substring(count, path.Length - (count + 1)))}";
 
                 if (!Directory.Exists(destFullPath))
                 {
@@ -152,7 +152,7 @@ namespace ECRF.Utils.GIT_EXTRACT
 
         private void Main_Load(object sender, EventArgs e)
         {
-             List<CommitFile> fileList = new List<CommitFile>();
+            List<CommitFile> fileList = new List<CommitFile>();
             using (var repo = new Repository(AppSettings.REPO_PATH))
             {
                 var commit = repo.Head.Tip;
@@ -164,6 +164,7 @@ namespace ECRF.Utils.GIT_EXTRACT
 
                 foreach (var ptc in patch)
                 {
+                    if (ptc.Path.Contains(".gitignore")) continue;
                     fileList.Add(new CommitFile()
                     {
                         Sha = commit.Sha.Substring(0, 7),
@@ -171,7 +172,7 @@ namespace ECRF.Utils.GIT_EXTRACT
                         Message = commit.Message,
                         //Status = ptc.Status.ToString(),
                         CommitDate = commit.Committer.When.ToString("yyyy-MM-dd HH:mm:ss"),
-                        FilePath = ptc.Path 
+                        FilePath = ptc.Path
                     });
                 }
             }
@@ -289,7 +290,23 @@ namespace ECRF.Utils.GIT_EXTRACT
 
                 Tools.SaveAppSetting("LAST_SELECTED_PATH", dialog.SelectedPath);
 
-                label1.Text = dialog.SelectedPath + $"\\{packageName}";
+                label1.Text = $"{dialog.SelectedPath}\\{packageName}";
+                string extractFileName = string.IsNullOrEmpty(packageName) ? "ExtracFiles" : "";
+                //C:\Users\xuxuzhaozhao\Desktop
+                string desktop = this.label1.Text;
+                //C:\Users\xuxuzhaozhao\Desktop\Asp
+                string destPath = $"{desktop}\\{extractFileName}";
+                if (Directory.Exists(destPath))
+                {
+                    DialogResult result = MessageBox.Show($"已存在同名提包文件夹,是否直接覆盖.", "保存提示",
+                        MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    if (result != DialogResult.OK) return;
+                }
+                else
+                {
+                    Directory.CreateDirectory(destPath);
+                }
+
                 //如果包名不为空，则将模板类信息拷贝到所选文件夹内
                 if (!string.IsNullOrEmpty(packageName))
                 {
@@ -313,11 +330,6 @@ namespace ECRF.Utils.GIT_EXTRACT
                     string comments = dataCommitFiles.Rows[i].Cells[3].Value.ToString();
 
                     string tmpFilePath = dataCommitFiles.Rows[i].Cells[5].Value.ToString();
-                    // 如果文件地址不包含 asp 或者 website 直接就跳过
-                    //if (!tmpFilePath.ToUpper().Contains(aspPath.ToUpper()))
-                    //{
-                    //    extramsg = $"(非{aspPath}下的文件不会被复制，请知悉)"; continue;
-                    //}
 
                     if (dataCommitFiles.Rows[i].Cells[0].Value != null &&
                         dataCommitFiles.Rows[i].Cells[0].Value.ToString() == "True")
@@ -338,22 +350,6 @@ namespace ECRF.Utils.GIT_EXTRACT
                     return;
                 }
 
-                //C:\Users\xuxuzhaozhao\Desktop
-                //string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                string desktop = this.label1.Text;
-
-                //C:\Users\xuxuzhaozhao\Desktop\Asp
-                string destPath = $"{desktop}\\ExtracFiles";
-
-                if (Directory.Exists(destPath))
-                {
-                    DialogResult result = MessageBox.Show($"已存在[ExtracFiles]文件夹,是否直接覆盖.", "保存提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                    if (result != DialogResult.OK) return;
-                }
-                else
-                {
-                    Directory.CreateDirectory(destPath);
-                }
 
                 // path: GEI\Asp\admin\query.aspx
                 foreach (var path in pathList)
@@ -366,16 +362,14 @@ namespace ECRF.Utils.GIT_EXTRACT
                     //count=4 切除'GEI\'这四个字符
                     int count = 0; path.ToUpper().IndexOf($@"{aspPath.ToUpper()}\");
                     //C:\Users\xuxuzhaozhao\Desktop\  Asp\admin\
-                    var destFullPath = $"{desktop}\\ExtracFiles\\{ Path.GetDirectoryName(path.Substring(count, path.Length - (count + 1)))}";
+                    var destFullPath = $"{desktop}\\{extractFileName}\\{Path.GetDirectoryName(path.Substring(count, path.Length - (count + 1)))}";
 
                     if (!Directory.Exists(destFullPath))
                     {
                         Directory.CreateDirectory(destFullPath);
                     }
-
                     //C:\Users\xuxuzhaozhao\Desktop\Asp\admin\  query.aspx
                     var destFullFilePath = $"{destFullPath}\\{Path.GetFileName(path)}";
-
                     File.Copy(sourceFullFilePath, destFullFilePath, true);
                 }
                 this.label1.Text = $"√，已复制到指定位置。{extramsg}";

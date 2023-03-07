@@ -108,7 +108,7 @@ namespace ECRF.Utils.GIT_EXTRACT
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(21, 162);
+            this.btnSubmit.Location = new System.Drawing.Point(20, 44);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(452, 25);
             this.btnSubmit.TabIndex = 7;
@@ -175,9 +175,9 @@ namespace ECRF.Utils.GIT_EXTRACT
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(18, 133);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(128, 17);
+            this.label6.Size = new System.Drawing.Size(116, 17);
             this.label6.TabIndex = 15;
-            this.label6.Text = "是否导出其他库文件：";
+            this.label6.Text = "是否导出其他文件：";
             // 
             // cbxNeedLib
             // 
@@ -192,7 +192,8 @@ namespace ECRF.Utils.GIT_EXTRACT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(485, 202);
+            this.ClientSize = new System.Drawing.Size(485, 73);
+            this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cbxNeedLib);
             this.Controls.Add(this.label5);
@@ -201,7 +202,6 @@ namespace ECRF.Utils.GIT_EXTRACT
             this.Controls.Add(this.txtSelfDefine);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.rbtnWEB);
-            this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.rbtnWebSite);
             this.Controls.Add(this.rbtnAsp);
             this.Controls.Add(this.label2);
