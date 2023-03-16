@@ -36,12 +36,13 @@ namespace ECRF.Utils.GIT_EXTRACT
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.cboModifier = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnChangeRecordNum = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCommitRecord = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cboModifier = new System.Windows.Forms.ComboBox();
+            this.btnGetMessageToMonth = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -106,6 +107,24 @@ namespace ECRF.Utils.GIT_EXTRACT
             this.panel3.Size = new System.Drawing.Size(423, 35);
             this.panel3.TabIndex = 9;
             // 
+            // cboModifier
+            // 
+            this.cboModifier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboModifier.FormattingEnabled = true;
+            this.cboModifier.Location = new System.Drawing.Point(209, 4);
+            this.cboModifier.Name = "cboModifier";
+            this.cboModifier.Size = new System.Drawing.Size(121, 25);
+            this.cboModifier.TabIndex = 10;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(159, 8);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 17);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "修改者";
+            // 
             // btnChangeRecordNum
             // 
             this.btnChangeRecordNum.Location = new System.Drawing.Point(360, 5);
@@ -142,29 +161,22 @@ namespace ECRF.Utils.GIT_EXTRACT
             this.txtCommitRecord.TabIndex = 6;
             this.txtCommitRecord.Text = "25";
             // 
-            // label3
+            // btnGetMessageToMonth
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(159, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 17);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "修改者";
-            // 
-            // cboModifier
-            // 
-            this.cboModifier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboModifier.FormattingEnabled = true;
-            this.cboModifier.Location = new System.Drawing.Point(209, 4);
-            this.cboModifier.Name = "cboModifier";
-            this.cboModifier.Size = new System.Drawing.Size(121, 25);
-            this.cboModifier.TabIndex = 10;
+            this.btnGetMessageToMonth.AutoSize = true;
+            this.btnGetMessageToMonth.Location = new System.Drawing.Point(13, -4);
+            this.btnGetMessageToMonth.Name = "btnGetMessageToMonth";
+            this.btnGetMessageToMonth.Size = new System.Drawing.Size(17, 17);
+            this.btnGetMessageToMonth.TabIndex = 7;
+            this.btnGetMessageToMonth.Text = "...";
+            this.btnGetMessageToMonth.Click += new System.EventHandler(this.btnGetMessageToMonth_Click);
             // 
             // CommitLogsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(703, 564);
+            this.Controls.Add(this.btnGetMessageToMonth);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -183,6 +195,7 @@ namespace ECRF.Utils.GIT_EXTRACT
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -200,5 +213,6 @@ namespace ECRF.Utils.GIT_EXTRACT
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ComboBox cboModifier;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label btnGetMessageToMonth;
     }
 }

@@ -10,12 +10,14 @@ using System.Windows.Forms;
 using ECRF.Utils.GIT_EXTRACT.Models;
 using LibGit2Sharp;
 using ECRF.Utils.GIT_EXTRACT.Common;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ECRF.Utils.GIT_EXTRACT
 {
     public partial class CommitLogsForm : Form
     {
         public event EventHandler sendMsgEvent;
+        List<CommitLogModel> logList = new List<CommitLogModel>();
 
         public CommitLogsForm()
         {
@@ -35,7 +37,7 @@ namespace ECRF.Utils.GIT_EXTRACT
 
         private void LoadData(int count, string modifier)
         {
-            var logList = new List<CommitLogModel>();
+            logList.Clear();
             //加载数据源
             using (var repo = new Repository(AppSettings.REPO_PATH))
             {
@@ -48,7 +50,7 @@ namespace ECRF.Utils.GIT_EXTRACT
                 cboModifier.DataSource = allModifers;
                 cboModifier.Text = modifier;
 
-                var commits = repo.Commits.ToList();
+                var commits = repo.Commits.Where(t => !t.Message.Contains("Merge branch")).ToList();
                 if (string.IsNullOrWhiteSpace(modifier) || modifier == "全部")
                 {
                     commits = commits.Take(count).ToList();
@@ -112,6 +114,16 @@ namespace ECRF.Utils.GIT_EXTRACT
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             Tools.DataGridView_CellMouseClick(sender, e, MousePosition);
+        }
+
+        private void btnGetMessageToMonth_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            var MonthDay1 = $"{DateTime.Now.Year}-{DateTime.Now.Month}-01";
+            logList.Where(t => DateTime.Parse(t.CommitDate) > DateTime.Parse(MonthDay1))
+                .Select(t => sb.Append(t.Message)).ToList();
+            Clipboard.SetData(DataFormats.Text, sb.ToString());
+            MessageBox.Show("Done");
         }
     }
 }
