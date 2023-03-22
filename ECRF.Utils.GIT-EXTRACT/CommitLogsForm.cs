@@ -120,7 +120,7 @@ namespace ECRF.Utils.GIT_EXTRACT
         {
             StringBuilder sb = new StringBuilder();
             var MonthDay1 = $"{DateTime.Now.Year}-{DateTime.Now.Month}-01";
-            logList.Where(t => DateTime.Parse(t.CommitDate) > DateTime.Parse(MonthDay1))
+            logList.Where(t => DateTime.Parse(t.CommitDate) > DateTime.Parse(MonthDay1)).OrderBy(t => t.CommitDate)
                 .Select(t => sb.Append(t.Message)).ToList();
             Clipboard.SetData(DataFormats.Text, sb.ToString());
             MessageBox.Show("Done");
